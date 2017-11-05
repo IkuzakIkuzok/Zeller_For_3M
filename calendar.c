@@ -48,9 +48,10 @@ void make_calendar(int y, int m, char s[7][22]){
 
 void print_calendar(const char s[7][22]) {
   int i,j;
-  i=0;
-  printf("%s\n",s[i]);
-  printf(" Œ ‰Î … –Ø ‹à “y “ú \n");
+  printf("%s\n",s[0]);
+  for(i=0; i<7; i++){
+    
+  }
   printf("---------------------\n");
   for(i=1; i<7; i++){
     printf("%21s\n",s[i]);

@@ -10,6 +10,16 @@
     int month;
     int date;
   }Date_t;
+  typedef enum Day{
+    Monday=1,
+    Tuesday=2,
+    Wednesday=3,
+    Thursday=4,
+    Friday=5,
+    Saturday=6,
+    Sunday=7
+  } Day_e;
+
   static int mday[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
 
   /*--- ‚¤‚é‚¤”N”»’è”Ÿ” ---*/

@@ -5,7 +5,7 @@
 // @param y 年 (ただし,4より小さい場合はエラー)
 // @param m 月
 // @param d 日
-// @return 月曜日(1)~日曜日(7)で返す。エラーの場合は,0を返す。
+// @return 月曜日(0)~日曜日(6)で返す。エラーの場合は,-1を返す。
 int zeller(Date_t dt){
   if(!is_calculable(&dt)){
     return 0;
@@ -22,9 +22,7 @@ int zeller(Date_t dt){
   return (dt.date+(26*(dt.month+1)/10)+large_y+large_y/4+gamma+5)%7+1;
 }
 
-char *day_s[] = {"月", "火", "水", "木", "金", "土" ,"日"};
-
 /*--- 曜日の文字列表現を返す函数 ---*/
 char* day_to_str(int day){
-  return 1<=day&&day<=7 ? day_s[day-1] : NULL;
+  return ;
 }
