@@ -2,7 +2,6 @@
 
 void make_calendar(int y, int m, char s[7][22]){
    Date_t dt = {y,m,1};
-   Date_t exception = {1582,10,1};
 
    int i, j;
    int wd=zeller(dt);
@@ -20,15 +19,22 @@ void make_calendar(int y, int m, char s[7][22]){
    for(i=1; i<7; i++){
      s[i][0] = '\0';
    }
-   if(days_between(dt,exception)==0){
-     return;
-   }
    i=1;
-   sprintf(s[i], "%*s",3*wd," ");              /*1“ú‚Ì¶‘¤‚ð‹ó”’‚Å–„‚ß‚é*/
-   for(j=1; j<=get_days_of_month(y,m); j++){
+   sprintf(s[i], "%*s",3*wd," ");       /*1“ú‚Ì¶‘¤‚ð‹ó”’‚Å–„‚ß‚é*/
+   for(j=1; j<=get_lastdate(y,m); j++){
      sprintf(buff,"%3d",j);
-     strcat(s[i],buff);                        /*i“ú‚Ì“ú•t‚ð’Ç‰Á*/
-     if(++wd%7==0){                            /*“ú—j“ú‚Å‰üs‚·‚é*/
+     strcat(s[i],buff);                 /*j“ú‚Ì“ú•t‚ð’Ç‰Á*/
+     if(y==1582 && m==10 && j==4){
+       int tmp_wd = wd;
+       printf("DEBUG: %d\n",tmp_wd);
+       for(tmp_wd%=7; tmp_wd<7; tmp_wd++){
+         strcat(s[i],"   ");
+       }
+       i++;
+       Date_t oct15 = {1582,10,15};
+       sprintf(s[i],"%*s",3*zeller(oct15)," ");
+       j=15;
+     }else if(++wd%7==0){               /*“ú—j“ú‚Å‰üs‚·‚é*/
        i++;
      }
    }
@@ -50,8 +56,9 @@ void print_calendar(const char s[7][22]) {
   int i,j;
   printf("%s\n",s[0]);
   for(i=0; i<7; i++){
-    
+    printf("%3s",day_to_string(i));
   }
+  putchar('\n');
   printf("---------------------\n");
   for(i=1; i<7; i++){
     printf("%21s\n",s[i]);

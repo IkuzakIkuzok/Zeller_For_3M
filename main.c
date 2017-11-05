@@ -9,7 +9,7 @@ int main(void){
   Date_t dt = {y,m,d};
   make_calendar(y,m,calendar);
   print_calendar(calendar);
-  printf("%s\n",day_to_str(zeller(dt)));
+  printf("%s\n",day_to_string(zeller(dt)));
 
   Date_t birth ={1582,10,4};
   printf("%s‚Æ%d“ú—£‚ê‚Ä‚¢‚é\n",dt_to_string(&birth),days_between(birth,dt));

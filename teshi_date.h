@@ -10,18 +10,18 @@
     int month;
     int date;
   }Date_t;
+
   typedef enum Day{
-    Monday=1,
-    Tuesday=2,
-    Wednesday=3,
-    Thursday=4,
-    Friday=5,
-    Saturday=6,
-    Sunday=7
+    Monday,
+    Tuesday,
+    Wednesday,
+    Thursday,
+    Friday,
+    Saturday,
+    Sunday
   } Day_e;
 
   static int mday[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
-
   /*--- うるう年判定函数 ---*/
   // @param y 年
   // @return うるう年なら true が返される。
@@ -74,9 +74,19 @@
     return retstr;
   }
 
+  /*--- Day_e列挙型の文字列表現を返す函数 ---*/
+  static char* day_to_string(Day_e day){
+    static char *ws[]={"月","火","水","木","金","土","日"};
+    static char errmsg[]="計算できません。";
+    if(day<0 || 6<day ){
+      return errmsg;
+    }
+    return ws[day];
+  }
+
   /*--- zeller.c に記述 ---*/
   extern char *day_s[];
-  extern int zeller(Date_t dt);
+  extern Day_e zeller(Date_t dt);
   extern char* day_to_str(int day);
 
   /*--- calc_days.c に記述 ---*/

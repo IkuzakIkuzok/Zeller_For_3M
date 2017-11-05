@@ -1,4 +1,7 @@
 #Zeller Makefile
+
+all: zeller.exe run
+
 zeller.exe: main.o calendar.o calc_days.o zeller.o teshi_date.h
 	gcc main.o calendar.o calc_days.o zeller.o -o zeller.exe
 
@@ -13,3 +16,6 @@ calc_days.o: calc_days.c
 
 zeller.o: zeller.c
 	gcc -c zeller.c
+
+run:
+	zeller.exe

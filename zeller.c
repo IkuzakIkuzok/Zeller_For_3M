@@ -6,9 +6,9 @@
 // @param m Œ
 // @param d “ú
 // @return Œ—j“ú(0)~“ú—j“ú(6)‚Å•Ô‚·BƒGƒ‰[‚Ìê‡‚Í,-1‚ğ•Ô‚·B
-int zeller(Date_t dt){
+Day_e zeller(Date_t dt){
   if(!is_calculable(&dt)){
-    return 0;
+    return -1;
   }
   if(dt.month==1 || dt.month==2){
     dt.year--;
@@ -19,10 +19,5 @@ int zeller(Date_t dt){
   int gamma = dt_serialize(&dt) >=15821015 ?
               5*large_c+large_c/4 :
               6*large_c+5;
-  return (dt.date+(26*(dt.month+1)/10)+large_y+large_y/4+gamma+5)%7+1;
-}
-
-/*--- —j“ú‚Ì•¶š—ñ•\Œ»‚ğ•Ô‚·”Ÿ” ---*/
-char* day_to_str(int day){
-  return ;
+  return (dt.date+(26*(dt.month+1)/10)+large_y+large_y/4+gamma+5)%7;
 }
